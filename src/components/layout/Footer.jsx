@@ -156,7 +156,7 @@ const Footer = () => {
               <span>in Indonesia</span>
             </span>
           </p>
-        </motion.div> */}
+        </motion.div>
       </div>
     </footer>
   );
