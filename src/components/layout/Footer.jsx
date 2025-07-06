@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heart, Github, Linkedin, Mail, MapPin, Code } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { personalInfo } from '../../data/projects';
+import { personalInfo } from '../../data/personal';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
@@ -147,7 +147,7 @@ const Footer = () => {
             <span>&copy; 2024 John Doe. {t('footer.rights')}.</span>
             <span className="flex items-center space-x-1">
               <span>{t('footer.built')}</span>
-              {/* <motion.div
+              <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 1, repeat: Infinity }}
               >
