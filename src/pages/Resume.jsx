@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Download, Briefcase, GraduationCap, Code, User, Award, Calendar } from "lucide-react";
+import { Download, Briefcase, GraduationCap, Code, Users, Award, Calendar } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
 import { personalInfo } from "../data/personal";
 import { skills, getSkillsByCategory } from "../data/skills";

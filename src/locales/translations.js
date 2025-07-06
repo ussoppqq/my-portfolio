@@ -9,7 +9,7 @@ export const translations = {
     },
     home: {
       greeting: 'Hai, Saya',
-      name: 'John Doe',
+      name: 'Muhamad Yusuf Firizki',
       title: 'Full Stack Developer',
       subtitle: 'Membangun solusi digital yang inovatif dan user-friendly dengan teknologi terdepan',
       cta: 'Lihat Portofolio',
@@ -74,7 +74,7 @@ export const translations = {
     },
     home: {
       greeting: 'Hi, I am',
-      name: 'John Doe',
+      name: 'Muhamad Yusuf Firizki',
       title: 'Full Stack Developer',
       subtitle: 'Building innovative and user-friendly digital solutions with cutting-edge technology',
       cta: 'View Portfolio',
