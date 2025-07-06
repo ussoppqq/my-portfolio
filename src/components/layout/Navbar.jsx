@@ -48,10 +48,10 @@ const Navbar = () => {
             transition={{ duration: 0.5 }}
             className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg"
           >
-            <span className="text-white font-bold text-lg">JD</span>
+            <span className="text-white font-bold text-lg">UQ</span>
           </motion.div>
           <span className="font-bold text-xl gradient-text group-hover:scale-105 transition-transform">
-            John Doe
+            Ussoppqq
           </span>
         </Link>
 

@@ -105,9 +105,9 @@ const Home = () => {
                                     className="flex space-x-4 pt-4"
                                 >
                                     {[
-                                        { icon: Github, url: PersonalInfo.social.github, color: 'hover:bg-gray-800' },
-                                        { icon: Linkedin, url: PersonalInfo.social.linkedin, color: 'hover:bg-blue-600' },
-                                        { icon: Mail, url: PersonalInfo.social.email, color: 'hover:bg-red-500' }
+                                        { icon: Github, url: personalInfo.social.github, color: 'hover:bg-gray-800' },
+                                        { icon: Linkedin, url: personalInfo.social.linkedin, color: 'hover:bg-blue-600' },
+                                        { icon: Mail, url: personalInfo.social.email, color: 'hover:bg-red-500' }
                                     ].map(({ icon: Icon, url, color }, index) => (
                                         <motion.a
                                             key={index}
