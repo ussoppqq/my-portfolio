@@ -135,7 +135,7 @@ const ProjectCard = ({ project, index }) => {
         </div>
 
         {/* Featured Badge */}
-        {project.featured && (
+        {/* {project.featured && (
           <div className="absolute top-4 right-4">
             <motion.div
               animate={{ rotate: [0, 5, -5, 0] }}
@@ -146,7 +146,7 @@ const ProjectCard = ({ project, index }) => {
               <span>Featured</span>
             </motion.div>
           </div>
-        )}
+        )} */}
 
         {/* Quick Action Buttons */}
         <div className="absolute bottom-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
