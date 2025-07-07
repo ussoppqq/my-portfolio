@@ -1,25 +1,25 @@
 export const personalInfo = {
-  name: "John Doe",
+  name: "Muhamad Yusuf Firizki",
   title: "Full Stack Developer",
-  email: "john.doe@email.com",
-  phone: "+62 812-3456-7890",
-  location: "Jakarta, Indonesia",
+  email: "rizkimuh252@gmail.com",
+  phone: "+62 895-3342-19066",
+  location: "Bekasi, Indonesia",
   bio: {
     id: "Saya adalah seorang Full Stack Developer dengan passion dalam menciptakan solusi digital yang inovatif. Dengan pengalaman lebih dari 3 tahun di industri teknologi, saya telah mengembangkan berbagai aplikasi web dan mobile yang user-friendly dan scalable.",
     en: "I am a Full Stack Developer with a passion for creating innovative digital solutions. With over 3 years of experience in the technology industry, I have developed various user-friendly and scalable web and mobile applications."
   },
   social: {
-    github: "https://github.com/johndoe",
-    linkedin: "https://linkedin.com/in/johndoe",
-    whatsapp: "https://wa.me/6281234567890",
-    instagram: "https://instagram.com/johndoe"
+    github: "https://github.com/ussoppqq",
+    linkedin: "https://linkedin.com/in/muhamad-yusuf-firizki",
+    whatsapp: "https://wa.me/62895334219066",
+    instagram: "https://instagram.com/ussoppqq"
   },
   education: [
     {
       degree: "S1 Teknik Informatika",
-      school: "Universitas Indonesia",
-      year: "2018-2022",
-      gpa: "3.75/4.00"
+      school: "President University",
+      year: "2023-2026",
+      gpa: "3.84/4.00"
     }
   ],
   experience: [

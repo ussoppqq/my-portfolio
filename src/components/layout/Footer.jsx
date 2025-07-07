@@ -47,9 +47,9 @@ const Footer = () => {
                 transition={{ duration: 0.5 }}
                 className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg"
               >
-                <span className="text-white font-bold text-lg">JD</span>
+                <span className="text-white font-bold text-lg">UQ</span>
               </motion.div>
-              <span className="font-bold text-2xl gradient-text">John Doe</span>
+              <span className="font-bold text-2xl gradient-text">Muhamad Yusuf Firizki</span>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
               Full Stack Developer passionate about creating innovative digital solutions 
@@ -144,15 +144,15 @@ const Footer = () => {
           className="border-t border-gray-700 mt-12 pt-8 text-center"
         >
           <p className="text-gray-400 flex items-center justify-center space-x-2 flex-wrap">
-            <span>&copy; 2024 John Doe. {t('footer.rights')}.</span>
+            <span>&copy; 2025 Muhamad Yusuf Firizki. {t('footer.rights')}.</span>
             <span className="flex items-center space-x-1">
               <span>{t('footer.built')}</span>
-              <motion.div
+              {/* <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 1, repeat: Infinity }}
               >
                 <Heart className="w-4 h-4 text-red-500" />
-              </motion.div>
+              </motion.div> */}
               <span>in Indonesia</span>
             </span>
           </p>

@@ -161,7 +161,7 @@ const Home = () => {
                 {/* Profile Image Container */}
                 <div className="relative w-full h-full rounded-3xl overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl">
                   <div className="w-full h-full bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 flex items-center justify-center">
-                    <span className="text-9xl font-bold text-white">JD</span>
+                    <span className="text-9xl font-bold text-white">UQ</span>
                   </div>
                 </div>
                 
@@ -173,7 +173,7 @@ const Home = () => {
                 />
 
                 {/* Floating Skills Icons */}
-                {[
+                {/* {[
                   { icon: Code, position: 'top-4 right-4', delay: 0 },
                   { icon: Palette, position: 'bottom-4 left-4', delay: 1 },
                   { icon: Smartphone, position: 'top-1/2 -right-4', delay: 2 }
@@ -193,7 +193,7 @@ const Home = () => {
                   >
                     <Icon className="w-6 h-6 text-blue-600" />
                   </motion.div>
-                ))}
+                ))} */}
               </div>
             </motion.div>
           </div>
@@ -201,7 +201,7 @@ const Home = () => {
       </section>
 
       {/* Quick Stats Section */}
-      <section className="py-20 px-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
+      {/* <section className="py-20 px-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -241,7 +241,7 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Featured Skills Preview */}
       <section className="py-20 px-4">
