@@ -70,7 +70,7 @@ const About = () => {
                 <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 p-2">
                   <div className="w-full h-full bg-white dark:bg-gray-900 rounded-2xl flex items-center justify-center">
                     <div className="w-full h-full bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
-                      <span className="text-8xl font-bold text-white">JD</span>
+                      <span className="text-8xl font-bold text-white">US</span>
                     </div>
                   </div>
                 </div>
@@ -121,7 +121,7 @@ const About = () => {
               </motion.div>
 
               {/* Why Technology */}
-              <motion.div variants={itemVariants}>
+              {/* <motion.div variants={itemVariants}>
                 <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white flex items-center">
                   <Target className="w-6 h-6 mr-3 text-purple-600" />
                   {t('about.why_tech')}
@@ -129,7 +129,7 @@ const About = () => {
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                   {t('about.tech_story')}
                 </p>
-              </motion.div>
+              </motion.div> */}
 
               {/* Quick Facts */}
               <motion.div variants={itemVariants}>
@@ -139,7 +139,7 @@ const About = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {[
                     { label: 'Location', value: personalInfo.location, icon: '📍' },
-                    { label: 'Experience', value: '3+ Years', icon: '💼' },
+                    { label: 'Instagram', value: "instagram.com/ussoppqq", icon: '📸' },
                     { label: 'Email', value: personalInfo.email, icon: '📧' },
                     { label: 'Phone', value: personalInfo.phone, icon: '📱' }
                   ].map((fact, index) => (
