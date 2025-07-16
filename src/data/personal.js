@@ -1,12 +1,16 @@
 export const personalInfo = {
   name: "Muhamad Yusuf Firizki",
-  title: "Full Stack Developer",
+  title: "Full Stack & AI Developer",
   email: "rizkimuh252@gmail.com",
   phone: "+62 895-3342-19066",
   location: "Bekasi, Indonesia",
   bio: {
-    id: "Saya adalah seorang Full Stack Developer dengan passion dalam menciptakan solusi digital yang inovatif. Dengan pengalaman lebih dari 3 tahun di industri teknologi, saya telah mengembangkan berbagai aplikasi web dan mobile yang user-friendly dan scalable.",
-    en: "I am a Full Stack Developer with a passion for creating innovative digital solutions. With over 3 years of experience in the technology industry, I have developed various user-friendly and scalable web and mobile applications."
+    id: "Saya adalah seorang Full Stack & AI Developer dengan ketertarikan kuat pada pengembangan teknologi berbasis kecerdasan buatan. Sebagai mahasiswa akhir Informatika di President University, saya memiliki pengalaman membangun aplikasi web dan mobile sekaligus mengeksplorasi berbagai penerapan AI seperti deteksi objek dan segmentasi gambar. Dengan latar belakang proyek akademik dan pribadi, saya berkomitmen menciptakan solusi digital yang inovatif, cerdas, dan berdampak.",
+    en: "I am a Full Stack & AI Developer with a strong passion for building intelligent technology solutions. As a final-year Informatics student at President University, I have experience developing web and mobile applications while exploring AI implementations such as object detection and image segmentation. Through both academic and personal projects, I strive to build innovative and impactful digital products that blend usability with smart technology."
+  },
+  about: {
+    id: "Seorang Full Stack & AI Developer yang bersemangat membangun solusi digital cerdas dan berdampak. Fokus pada pengembangan web, mobile, dan penerapan kecerdasan buatan dalam dunia nyata.",
+    en: "A passionate Full Stack & AI Developer dedicated to building smart and impactful digital solutions. Focused on web, mobile, and real-world applications of Artificial Intelligence."
   },
   social: {
     github: "https://github.com/ussoppqq",

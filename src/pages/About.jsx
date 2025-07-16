@@ -216,63 +216,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold gradient-text mb-4">My Core Values</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400">
-              Principles that guide my work and life philosophy
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Code,
-                title: 'Clean Code',
-                description: 'Writing maintainable, efficient, and well-documented code that stands the test of time and scales beautifully.',
-                color: 'from-blue-600 to-cyan-600'
-              },
-              {
-                icon: Heart,
-                title: 'User-Centric',
-                description: 'Always putting user experience first, creating solutions that truly solve real problems and delight users.',
-                color: 'from-red-500 to-pink-600'
-              },
-              {
-                icon: Award,
-                title: 'Continuous Learning',
-                description: 'Staying updated with latest technologies and best practices in the ever-evolving tech landscape.',
-                color: 'from-purple-600 to-indigo-600'
-              }
-            ].map((value, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2 }}
-                whileHover={{ scale: 1.05, y: -10 }}
-                className="text-center p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 group"
-              >
-                <div className={`w-20 h-20 bg-gradient-to-r ${value.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <value.icon className="w-10 h-10 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                  {value.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {value.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
