@@ -8,7 +8,7 @@ export const projects = [
       en: 'Vehiscan is an AI-powered system that detects and counts passing vehicles in real-time and recognizes license plates. Built with YOLOv8 and Flet, it integrates Roboflow for model training, AWS S3 for cloud storage, and Notion for data logging.'
     },
     githubUrl: 'https://github.com/ussoppqq/VehiScan',
-    image: 'public/project/Vehicle_detection.jpg'
+    image: '/project/Vehicle_detection.jpg'
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ export const projects = [
       en: 'asgartStudio is a responsive website I built for a photography studio, featuring a photo gallery, service descriptions, and a booking form integrated via email. Built with React, Vite, and Tailwind CSS.'
     },
     githubUrl: 'https://github.com/ussoppqq/asqartStudio',
-    image: 'public/project/asgartStudio.png'
+    image: '/project/asgartStudio.png'
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ export const projects = [
       en: 'A smart chatbot built to answer questions about Indonesian history using Flask, BERT, and all-MiniLM-L6-v2. The system uses Hugging Face Transformers for semantic search and answer extraction.'
     },
     githubUrl: 'https://github.com/ussoppqq/Indonesian-History-Chatbot',
-    image: 'public/project/chatbotsejarahindonesia.png'
+    image: '/project/chatbotsejarahindonesia.png'
   },
   {
     id: 4,
@@ -41,7 +41,7 @@ export const projects = [
       en: 'A deep learning project using a custom U-Net model in TensorFlow to segment brain tumors from grayscale MRI scans. Includes a full pipeline for data preprocessing, training, and result visualization.'
     },
     githubUrl: 'https://github.com/ussoppqq/Brain-Tumor-Segmentation',
-    image: 'public/project/braintumor.png'
+    image: '/project/braintumor.png'
   },
   {
     id: 5,
@@ -52,7 +52,7 @@ export const projects = [
       en: 'A simple and interactive image editing application using Python, Flet, and OpenCV. Users can adjust brightness, contrast, apply filters, crop, rotate, and download the edited image.'
     },
     githubUrl: 'https://github.com/ussoppqq/ImageProcessing',
-    image: 'public/project/imageProcessing.png'
+    image: '/project/imageProcessing.png'
   },
   {
     id: 6,
@@ -63,7 +63,7 @@ export const projects = [
       en: 'E-Laundry is a mobile and web-based platform for finding and managing nearby laundry services. The mobile app lets users place orders, schedule pickups/deliveries, and pay via QRIS. Web dashboard allows real-time management.'
     },
     githubUrl: 'https://github.com/ussoppqq/E-LaundryApp',
-    image: 'public/project/E-Laundry.jpg'
+    image: '/project/E-Laundry.jpg'
   },
   {
     id: 7,
@@ -74,7 +74,7 @@ export const projects = [
       en: 'PresMUN is a responsive event website for a Model United Nations conference, built with React, Vite, and Tailwind CSS. It features event details, speaker profiles, and an online registration form.'
     },
     githubUrl: 'https://github.com/ussoppqq/presmunWeb',
-    image: 'public/project/presmun.png'
+    image: '/project/presmun.png'
   },
   {
     id: 8,
@@ -85,6 +85,6 @@ export const projects = [
       en: 'PUNTEN is a mobile-friendly web app built with PHP to simplify food ordering at President University canteens. Users can browse canteens, place orders, track them, manage accounts, and leave reviews.'
     },
     githubUrl: 'https://github.com/ussoppqq/Punten-development',
-    image: 'public/project/PUNTEN_Mobile_App.jpg'
+    image: '/project/PUNTEN_Mobile_App.jpg'
   }
 ];

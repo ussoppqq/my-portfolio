@@ -44,28 +44,28 @@ const certifications = [
     {
         name: 'Belajar Dasar Cloud dan Gen AI di AWS',
         year: '2025',
-        image: 'public/sertifikat/AI-aws-dicoding.png',
+        image: '/sertifikat/AI-aws-dicoding.png',
         issuer: 'Dicoding',
         url: 'https://drive.google.com/file/d/1oXqd1tnC2FmsonHhQGHhwTLpw2K8GfIJ/view?usp=sharing'
     },
     {
         name: 'Exhibition of Economic Survival',
         year: '2024',
-        image: 'public/sertifikat/economic-survival.png',
+        image: '/sertifikat/economic-survival.png',
         issuer: 'President University',
         url: 'https://drive.google.com/file/d/1LbpTjwcOVyjiof-9gSbnqtlJH7EjYL6_/view?usp=sharing'
     },
     {
         name: 'Prompt Engineering with Azure OpenAI Service',
         year: '2025',
-        image: 'public/sertifikat/azure-openAi-service.png',
+        image: '/sertifikat/azure-openAi-service.png',
         issuer: 'Digitalent',
         url: 'https://drive.google.com/file/d/1eL8vYjKTllOmghJuQPH4myfAHjX6MrnB/view?usp=sharing'
     },
     {
         name: 'Linear Models in Machine Learning: Fundamentals',
         year: '2025',
-        image: 'public/sertifikat/Linear_Models_Machine_Learning_Fundamentals.png',
+        image: '/sertifikat/Linear_Models_Machine_Learning_Fundamentals.png',
         issuer: 'Digitalent',
         url: 'https://drive.google.com/file/d/12i6wZaiiHQOAMJlq705KW6WyH9hiDnf5/view?usp=sharing'
     }
@@ -80,8 +80,8 @@ const Resume = () => {
 
     const handleDownloadCV = () => {
         const link = document.createElement('a');
-        link.href = 'public/Muhamad Yusuf Firizki-cv.pdf'; 
-        link.download = 'public/Muhamad Yusuf Firizki-cv.pdf';
+        link.href = '/Muhamad Yusuf Firizki-cv.pdf'; 
+        link.download = '/Muhamad Yusuf Firizki-cv.pdf';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

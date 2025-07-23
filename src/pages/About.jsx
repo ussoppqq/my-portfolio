@@ -90,7 +90,7 @@ const About = () => {
                 <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 opacity-60 blur-lg animate-spin-slow"></div>
                 <div className="relative w-full h-full rounded-2xl shadow-2xl overflow-hidden border-4 border-white dark:border-gray-800 bg-white dark:bg-gray-900 flex items-center justify-center">
                   <img
-                    src="public/Data-Master-(AUSG)-Muhammad _Yusuf_Firizki.png"
+                    src="/Data-Master-(AUSG)-Muhammad_Yusuf_Firizki.png"
                     alt="Foto Profil Yusuf Firizki"
                     className="w-40 h-40 md:w-72 md:h-72 object-cover rounded-xl transition-transform duration-300 hover:scale-105"
                   />
