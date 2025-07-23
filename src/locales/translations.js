@@ -29,9 +29,11 @@ export const translations = {
       all: 'Semua',
       web: 'Web',
       mobile: 'Mobile',
-      design: 'Design',
-      view_demo: 'Lihat Demo',
-      view_code: 'Lihat Kode'
+      ai: 'AI',
+      view_github: 'Lihat di GitHub',
+      no_projects: 'Tidak ada proyek ditemukan',
+      no_projects_subtitle: 'Tidak ada proyek dalam kategori ini. Coba pilih filter lain.',
+      show_all: 'Tampilkan Semua Proyek'
     },
     resume: {
       title: 'Resume',
@@ -40,8 +42,14 @@ export const translations = {
       experience: 'Pengalaman',
       education: 'Pendidikan',
       skills: 'Keahlian',
-      technical: 'Technical Skills',
-      soft: 'Soft Skills'
+      technical: 'Keterampilan Teknis',
+      soft: 'Keterampilan Soft',
+      programming: 'Bahasa Pemrograman',
+      ai_tools: 'Alat AI',
+      web_dev: 'Pengembangan Web',
+      design_tools: 'Alat Desain',
+      certifications: 'Sertifikasi',
+      view_certificate: 'Lihat Sertifikat'
     },
     contact: {
       title: 'Hubungi Saya',
@@ -51,7 +59,10 @@ export const translations = {
         email: 'Alamat Email',
         subject: 'Subjek',
         message: 'Pesan',
-        send: 'Kirim Pesan'
+        send: 'Kirim Pesan',
+        sending: 'Mengirim...',
+        fill_fields: 'Harap isi semua kolom',
+        success_message: 'Terima kasih atas pesan Anda! Saya akan segera menghubungi Anda.'
       },
       info: {
         email: 'Email',
@@ -89,14 +100,16 @@ export const translations = {
       tech_story: 'My interest in technology started from a young age when I first saw how code could transform an empty screen into a functioning application. I believe technology is a powerful tool for solving real-world problems and making people\'s lives easier.'
     },
     portfolio: {
-      title: 'Portfolio',
+      title: 'My Portfolio',
       subtitle: 'Collection of projects I have developed',
       all: 'All',
       web: 'Web',
       mobile: 'Mobile',
-      design: 'Design',
-      view_demo: 'View Demo',
-      view_code: 'View Code'
+      ai: 'AI',
+      view_github: 'View on GitHub',
+      no_projects: 'No projects found',
+      no_projects_subtitle: 'No projects found in this category. Try selecting a different filter.',
+      show_all: 'Show All Projects'
     },
     resume: {
       title: 'Resume',
@@ -106,7 +119,13 @@ export const translations = {
       education: 'Education',
       skills: 'Skills',
       technical: 'Technical Skills',
-      soft: 'Soft Skills'
+      soft: 'Soft Skills',
+      programming: 'Programming Languages',
+      ai_tools: 'AI Tools',
+      web_dev: 'Web Development',
+      design_tools: 'Design Tools',
+      certifications: 'Certifications',
+      view_certificate: 'View Certificate'
     },
     contact: {
       title: 'Contact Me',
@@ -116,7 +135,10 @@ export const translations = {
         email: 'Email Address',
         subject: 'Subject',
         message: 'Message',
-        send: 'Send Message'
+        send: 'Send Message',
+        sending: 'Sending...',
+        fill_fields: 'Please fill in all fields',
+        success_message: 'Thank you for your message! I will get back to you soon.'
       },
       info: {
         email: 'Email',

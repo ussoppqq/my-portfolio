@@ -1,9 +1,10 @@
 import React, { useState, useMemo } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Filter, ExternalLink, Calendar, Star, Zap } from 'lucide-react';
+import { projects } from '../data/projects';
 
-// Enhanced ProjectCard with cleaner design and justified description
-const ProjectCard = React.memo(({ project, index }) => {
+const ProjectCard = React.memo(({ project, index, language }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   
   const categoryConfig = {
@@ -87,7 +88,7 @@ const ProjectCard = React.memo(({ project, index }) => {
           {/* Description with justified text and smaller font */}
           <div className="min-h-[4rem] mb-4">
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed text-justify">
-              {project.description}
+              {project.description?.[language]}
             </p>
           </div>
 
@@ -120,79 +121,13 @@ const ProjectCard = React.memo(({ project, index }) => {
 
 const Portfolio = () => {
   const [filter, setFilter] = useState('all');
-
-  const projects = [
-    {
-      id: 1,
-      title: 'Vehiscan',
-      category: 'ai',
-      description: 'Vehiscan is an AI-powered system that detects and counts passing vehicles in real-time and recognizes license plates. Built with YOLOv8 and Flet, it integrates Roboflow for model training, AWS S3 for cloud storage, and Notion for data logging. Codebase managed on GitHub. Tech Stack: YOLOv8, Flet, Roboflow, AWS S3, Notion, GitHub',
-      githubUrl: 'https://github.com/ussoppqq/VehiScan',
-      image: 'src/assets/Vehicle_detection.jpg'
-    },
-    {
-      id: 2,
-      title: 'AsgartStudio',
-      category: 'web',
-      description: 'asgartStudio is a responsive website I built for a photography studio, featuring a photo gallery, service descriptions, and a booking form integrated via email. Built with React, Vite, and Tailwind CSS, it delivers fast performance and a clean user experience across devices.',
-      githubUrl: 'https://github.com/ussoppqq/asqartStudio',
-      image: 'src/assets/asgartStudio.png'
-    },
-    {
-      id: 3,
-      title: 'Indonesian History Chatbot',
-      category: 'ai',
-      description: 'A smart chatbot built to answer questions about Indonesian history using Flask, BERT, and all-MiniLM-L6-v2. The system uses Hugging Face Transformers for semantic search and answer extraction. It matches user questions with historical context and returns accurate, cleaned responses. Tech Stack: Flask, Hugging Face (BERT, all-MiniLM-L6-v2), Python',
-      githubUrl: 'https://github.com/ussoppqq/Indonesian-History-Chatbot',
-      image: 'src/assets/chatbotsejarahindonesia.png'
-    },
-    {
-      id: 4,
-      title: 'Brain Tumor Segmentation',
-      category: 'ai',
-      description: 'A deep learning project using a custom U-Net model in TensorFlow to segment brain tumors from grayscale MRI scans. Includes a full pipeline for data preprocessing, training, and visualization of results with accurate binary masks. Tech Stack: TensorFlow, Python, NumPy, Matplotlib',
-      githubUrl: 'https://github.com/ussoppqq/Brain-Tumor-Segmentation  ',
-      image: 'src/assets/braintumor.png'
-    },
-    {
-      id: 5,
-      title: 'Image Processing Application',
-      category: 'ai',
-      description: 'A simple and interactive image editing application using Python, Flet, and OpenCV. Users can adjust brightness, contrast, apply filters, crop, rotate, and download the edited image. The app provides real-time preview with a clean, user-friendly interface. Tech Stack: Python, Flet, OpenCV, Pillow',
-      githubUrl: 'https://github.com/ussoppqq/ImageProcessing',
-      image: 'src/assets/imageProcessing.png'
-    },
-    {
-      id: 6,
-      title: 'E-Laundry',
-      category: 'mobile',
-      description: 'E-Laundry is a mobile and web-based platform for finding and managing nearby laundry services. The mobile app lets users scan for laundries, place orders, schedule pickups/deliveries, and pay via QRIS. The web dashboard allows admins to manage orders and monitor services in real time. Tech Stack: Android (Java), Firebase, Google Maps API, QRIS, Web (HTML/CSS/JS)',
-      githubUrl: 'https://github.com/ussoppqq/E-LaundryApp',
-      image: 'src/assets/E-Laundry.jpg'
-    },
-    {
-      id: 7,
-      title: 'PresMUN',
-      category: 'web',
-      description: 'PresMUN is a responsive event website for a Model United Nations conference, built with React, Vite, and Tailwind CSS. It features event details, speaker profiles, an online registration form, and contact functionality in a clean, modern interface. Tech Stack: React, Vite, Tailwind CSS. Live Site: presidentmodelun.com',
-      githubUrl: 'https://github.com/ussoppqq/presmunWeb',
-      image: 'src/assets/presmun.png'
-    },
-    {
-      id: 8,
-      title: 'PUNTEN',
-      category: 'mobile',
-      description: 'PUNTEN is a mobile-friendly web app built with PHP to simplify food ordering at President University canteens. Users can browse canteens, place orders, track them in real time, manage accounts, and leave reviews — all in one platform. Tech Stack: PHP, HTML, CSS, JavaScript',
-      githubUrl: 'https://github.com/ussoppqq/Punten-development',
-      image: 'src/assets/PUNTEN_Mobile_App.jpg'
-    },
-  ];
+  const { language, t } = useLanguage();
 
   const categories = [
-    { key: 'all', label: 'All Projects', count: projects.length },
-    { key: 'web', label: 'Web Apps', count: projects.filter(p => p.category === 'web').length },
-    { key: 'ai', label: 'AI Projects', count: projects.filter(p => p.category === 'ai').length },
-    { key: 'mobile', label: 'Mobile Apps', count: projects.filter(p => p.category === 'mobile').length },
+    { key: 'all', label: t('portfolio.all'), count: projects.length },
+    { key: 'web', label: t('portfolio.web'), count: projects.filter(p => p.category === 'web').length },
+    { key: 'ai', label: t('portfolio.ai'), count: projects.filter(p => p.category === 'ai').length },
+    { key: 'mobile', label: t('portfolio.mobile'), count: projects.filter(p => p.category === 'mobile').length },
   ];
 
   const filteredProjects = useMemo(
@@ -233,7 +168,7 @@ const Portfolio = () => {
             className="mb-8"
           >
             <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
-              My Portfolio
+              {t('portfolio.title')}
             </h1>
           </motion.div>
           
@@ -244,7 +179,7 @@ const Portfolio = () => {
             className="max-w-3xl mx-auto space-y-4"
           >
             <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
-              A collection of projects I've worked on
+              {t('portfolio.subtitle')}
             </p>
           </motion.div>
 
@@ -315,7 +250,7 @@ const Portfolio = () => {
             >
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProjects.map((project, index) => (
-                  <ProjectCard key={project.id} project={project} index={index} />
+                  <ProjectCard key={project.id} project={project} index={index} language={language} />
                 ))}
               </div>
             </motion.div>
