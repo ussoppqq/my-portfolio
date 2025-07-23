@@ -170,7 +170,7 @@ const Home = () => {
                   <div className="w-full h-full flex items-center justify-center relative overflow-hidden">
                     {/* Profile image */}
                     <img
-                      src="/src/assets/Data-Master-(AUSG)-Muhammad _Yusuf_Firizki.png"
+                      src="/public/Data-Master-(AUSG)-Muhammad _Yusuf_Firizki.png"
                       alt="Foto Profil Yusuf Firizki"
                       className="w-full h-full object-cover rounded-full border-4 border-white dark:border-gray-900"
                     />
