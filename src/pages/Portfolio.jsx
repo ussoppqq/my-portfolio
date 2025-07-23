@@ -1,233 +1,353 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Filter } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { Github, Filter, ExternalLink, Calendar, Star, Zap } from 'lucide-react';
 
-// Lazy-load images with native loading="lazy"
+// Enhanced ProjectCard with cleaner design and justified description
 const ProjectCard = React.memo(({ project, index }) => {
-  const categoryColors = {
-    web: 'bg-blue-500',
-    ai: 'bg-purple-500',
-    mobile: 'bg-green-500',
+  const [imageLoaded, setImageLoaded] = useState(false);
+  
+  const categoryConfig = {
+    web: { 
+      gradient: 'from-blue-500 to-blue-600', 
+      bgGlow: 'from-blue-400/20 to-blue-600/20',
+      borderColor: 'border-blue-500/30',
+      icon: '🌐'
+    },
+    ai: { 
+      gradient: 'from-purple-500 to-purple-600', 
+      bgGlow: 'from-purple-400/20 to-purple-600/20',
+      borderColor: 'border-purple-500/30',
+      icon: '🤖'
+    },
+    mobile: { 
+      gradient: 'from-green-500 to-green-600', 
+      bgGlow: 'from-green-400/20 to-green-600/20',
+      borderColor: 'border-green-500/30',
+      icon: '📱'
+    },
   };
+
+  const config = categoryConfig[project.category];
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.05, duration: 0.2 }}
-      whileHover={{ y: -5 }}
-      className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-gray-700"
+      initial={{ opacity: 0, y: 40, scale: 0.9 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ 
+        delay: index * 0.1, 
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }}
+      whileHover={{ y: -8, scale: 1.02 }}
+      className="group relative h-full"
     >
-      {/* Project Image */}
-      <div className="relative overflow-hidden">
-        <img
-          src={project.image}
-          alt={project.title}
-          loading="lazy"
-          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-        {/* Category Badge */}
-        <div className="absolute top-4 left-4">
-          <span
-            className={`px-3 py-1 rounded-full text-xs font-medium capitalize text-white ${categoryColors[project.category]} shadow-lg`}
-          >
-            {project.category}
-          </span>
-        </div>
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      </div>
+      {/* Glow effect */}
+      <div className={`absolute -inset-1 bg-gradient-to-r ${config.bgGlow} rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
 
-      {/* Project Content */}
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-          {project.title}
-        </h3>
-        <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">
-          {project.description}
-        </p>
-        <motion.a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="inline-flex items-center justify-center w-full px-4 py-3 bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-all duration-300 font-medium shadow-lg"
-        >
-          <Github className="w-4 h-4 mr-2" />
-          View on GitHub
-        </motion.a>
+      {/* Main card container with flex layout for sticky footer */}
+      <div className="relative bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl rounded-2xl overflow-hidden shadow-lg border border-gray-200/50 dark:border-gray-700/50 group-hover:shadow-xl transition-all duration-500 flex flex-col h-full">
+
+        {/* Image section */}
+        <div className="relative overflow-hidden h-48">
+          {!imageLoaded && (
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 animate-pulse flex items-center justify-center">
+              <div className="text-4xl text-gray-400 dark:text-gray-500">{config.icon}</div>
+            </div>
+          )}
+          {project.image ? (
+            <img
+              src={project.image}
+              alt={project.title}
+              className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+              onLoad={() => setImageLoaded(true)}
+            />
+          ) : (
+            <div 
+              className={`w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-600 dark:to-gray-700 transition-transform duration-700 group-hover:scale-105 flex items-center justify-center ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+            >
+              <div className="text-6xl text-gray-400 dark:text-gray-500">
+                {config.icon}
+              </div>
+            </div>
+          )}
+
+          {/* Hover overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        </div>
+
+        {/* Content section with flex-grow to push button down */}
+        <div className="p-5 flex flex-col flex-grow">
+          {/* Title */}
+          <div className="space-y-2">
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all duration-300 leading-tight">
+              {project.title}
+            </h3>
+          </div>
+
+          {/* Description with justified text and smaller font */}
+          <div className="min-h-[4rem] mb-4">
+            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed text-justify">
+              {project.description}
+            </p>
+          </div>
+
+          <div className="flex-grow" />
+
+          {/* GitHub button at the bottom */}
+          <motion.a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="group/btn relative inline-flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r from-gray-900 to-gray-800 dark:from-gray-700 dark:to-gray-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden mt-4"
+          >
+            {/* Button hover effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></div>
+            <div className="relative flex items-center space-x-2">
+              <Github className="w-4 h-4 transition-transform group-hover/btn:rotate-12 duration-300" />
+              <span className="text-sm">View on GitHub</span>
+            </div>
+          </motion.a>
+        </div>
+
+        {/* Top accent line */}
+        <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
       </div>
     </motion.div>
   );
 });
 
 const Portfolio = () => {
-  const { t, language } = useLanguage();
   const [filter, setFilter] = useState('all');
 
-  // Local image imports (replace with your local image paths)
   const projects = [
     {
       id: 1,
-      title: 'E-Commerce Platform',
-      category: 'web',
-      image: '/images/ecommerce.jpg',
-      description: 'A full-featured online store with product listings, cart functionality, and secure payment integration.',
-      githubUrl: 'https://github.com/johndoe/ecommerce',
+      title: 'Vehiscan',
+      category: 'ai',
+      description: 'Vehiscan is an AI-powered system that detects and counts passing vehicles in real-time and recognizes license plates. Built with YOLOv8 and Flet, it integrates Roboflow for model training, AWS S3 for cloud storage, and Notion for data logging. Codebase managed on GitHub. Tech Stack: YOLOv8, Flet, Roboflow, AWS S3, Notion, GitHub',
+      githubUrl: 'https://github.com/ussoppqq/VehiScan',
+      image: 'src/assets/Vehicle_detection.jpg'
     },
     {
       id: 2,
-      title: 'Task Management App',
+      title: 'AsgartStudio',
       category: 'web',
-      image: '/images/taskapp.jpg',
-      description: 'A web-based app for organizing tasks, setting deadlines, and collaborating with teams.',
-      githubUrl: 'https://github.com/johndoe/taskapp',
+      description: 'asgartStudio is a responsive website I built for a photography studio, featuring a photo gallery, service descriptions, and a booking form integrated via email. Built with React, Vite, and Tailwind CSS, it delivers fast performance and a clean user experience across devices.',
+      githubUrl: 'https://github.com/ussoppqq/asqartStudio',
+      image: 'src/assets/asgartStudio.png'
     },
     {
       id: 3,
-      title: 'Chatbot Assistant',
+      title: 'Indonesian History Chatbot',
       category: 'ai',
-      image: '/images/chatbot.jpg',
-      description: 'An AI-powered chatbot for customer support, built with natural language processing.',
-      githubUrl: 'https://github.com/johndoe/chatbot',
+      description: 'A smart chatbot built to answer questions about Indonesian history using Flask, BERT, and all-MiniLM-L6-v2. The system uses Hugging Face Transformers for semantic search and answer extraction. It matches user questions with historical context and returns accurate, cleaned responses. Tech Stack: Flask, Hugging Face (BERT, all-MiniLM-L6-v2), Python',
+      githubUrl: 'https://github.com/ussoppqq/Indonesian-History-Chatbot',
+      image: 'src/assets/chatbotsejarahindonesia.png'
     },
     {
       id: 4,
-      title: 'Image Recognition',
+      title: 'Brain Tumor Segmentation',
       category: 'ai',
-      image: '/images/image-recognition.jpg',
-      description: 'A machine learning model for identifying objects in images with high accuracy.',
-      githubUrl: 'https://github.com/johndoe/image-recognition',
+      description: 'A deep learning project using a custom U-Net model in TensorFlow to segment brain tumors from grayscale MRI scans. Includes a full pipeline for data preprocessing, training, and visualization of results with accurate binary masks. Tech Stack: TensorFlow, Python, NumPy, Matplotlib',
+      githubUrl: 'https://github.com/ussoppqq/Brain-Tumor-Segmentation  ',
+      image: 'src/assets/braintumor.png'
     },
     {
       id: 5,
-      title: 'Fitness Tracker',
-      category: 'mobile',
-      image: '/images/fitness-tracker.jpg',
-      description: 'A mobile app for tracking workouts, calories, and fitness goals with real-time analytics.',
-      githubUrl: 'https://github.com/johndoe/fitness-tracker',
+      title: 'Image Processing Application',
+      category: 'ai',
+      description: 'A simple and interactive image editing application using Python, Flet, and OpenCV. Users can adjust brightness, contrast, apply filters, crop, rotate, and download the edited image. The app provides real-time preview with a clean, user-friendly interface. Tech Stack: Python, Flet, OpenCV, Pillow',
+      githubUrl: 'https://github.com/ussoppqq/ImageProcessing',
+      image: 'src/assets/imageProcessing.png'
     },
     {
       id: 6,
-      title: 'Weather App',
+      title: 'E-Laundry',
       category: 'mobile',
-      image: '/images/weather-app.jpg',
-      description: 'A mobile app providing real-time weather updates and forecasts based on user location.',
-      githubUrl: 'https://github.com/johndoe/weather-app',
+      description: 'E-Laundry is a mobile and web-based platform for finding and managing nearby laundry services. The mobile app lets users scan for laundries, place orders, schedule pickups/deliveries, and pay via QRIS. The web dashboard allows admins to manage orders and monitor services in real time. Tech Stack: Android (Java), Firebase, Google Maps API, QRIS, Web (HTML/CSS/JS)',
+      githubUrl: 'https://github.com/ussoppqq/E-LaundryApp',
+      image: 'src/assets/E-Laundry.jpg'
     },
     {
       id: 7,
-      title: 'Portfolio Website',
+      title: 'PresMUN',
       category: 'web',
-      image: '/images/portfolio.jpg',
-      description: 'A personal portfolio website showcasing projects and skills with a modern UI.',
-      githubUrl: 'https://github.com/johndoe/portfolio',
+      description: 'PresMUN is a responsive event website for a Model United Nations conference, built with React, Vite, and Tailwind CSS. It features event details, speaker profiles, an online registration form, and contact functionality in a clean, modern interface. Tech Stack: React, Vite, Tailwind CSS. Live Site: presidentmodelun.com',
+      githubUrl: 'https://github.com/ussoppqq/presmunWeb',
+      image: 'src/assets/presmun.png'
     },
     {
       id: 8,
-      title: 'Expense Tracker',
+      title: 'PUNTEN',
       category: 'mobile',
-      image: '/images/expense-tracker.jpg',
-      description: 'A mobile app for managing personal finances, tracking expenses, and setting budgets.',
-      githubUrl: 'https://github.com/johndoe/expense-tracker',
+      description: 'PUNTEN is a mobile-friendly web app built with PHP to simplify food ordering at President University canteens. Users can browse canteens, place orders, track them in real time, manage accounts, and leave reviews — all in one platform. Tech Stack: PHP, HTML, CSS, JavaScript',
+      githubUrl: 'https://github.com/ussoppqq/Punten-development',
+      image: 'src/assets/PUNTEN_Mobile_App.jpg'
     },
   ];
 
   const categories = [
-    { key: 'all', label: 'All' },
-    { key: 'web', label: 'Web' },
-    { key: 'ai', label: 'AI' },
-    { key: 'mobile', label: 'Mobile' },
+    { key: 'all', label: 'All Projects', count: projects.length },
+    { key: 'web', label: 'Web Apps', count: projects.filter(p => p.category === 'web').length },
+    { key: 'ai', label: 'AI Projects', count: projects.filter(p => p.category === 'ai').length },
+    { key: 'mobile', label: 'Mobile Apps', count: projects.filter(p => p.category === 'mobile').length },
   ];
 
-  // Memoize filtered projects to avoid unnecessary recalculations
   const filteredProjects = useMemo(
-    () =>
-      filter === 'all' ? projects : projects.filter((project) => project.category === filter),
+    () => filter === 'all' ? projects : projects.filter((project) => project.category === filter),
     [filter]
   );
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-200/60 via-purple-200/40 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-bl from-purple-200/50 via-pink-200/30 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-tr from-cyan-200/40 via-blue-200/30 to-transparent rounded-full blur-3xl"></div>
+        </div>
+        <div className="absolute inset-0 opacity-5">
+          <div className="grid grid-cols-12 h-full">
+            {Array.from({ length: 12 }, (_, i) => (
+              <div key={i} className="border-r border-gray-400 dark:border-gray-600"></div>
+            ))}
+          </div>
+          <div className="absolute inset-0 grid grid-rows-8 w-full">
+            {Array.from({ length: 8 }, (_, i) => (
+              <div key={i} className="border-b border-gray-400 dark:border-gray-600"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Header Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="text-4xl md:text-5xl font-bold gradient-text mb-6"
+      <section className="relative pt-32 pb-20 px-4 overflow-hidden">
+        <div className="max-w-6xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="mb-8"
           >
-            My Portfolio
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+              My Portfolio
+            </h1>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.3 }}
-            className="text-xl text-gray-600 dark:text-gray-400"
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="max-w-3xl mx-auto space-y-4"
           >
-            A collection of projects I've worked on
-          </motion.p>
+            <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+              A collection of projects I've worked on
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ delay: 0.8, duration: 1 }}
+            className="mt-12 flex justify-center"
+          >
+            <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+          </motion.div>
         </div>
       </section>
 
       {/* Filter Section */}
-      <section className="py-8 px-4">
+      <section className="py-12 px-4">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.3 }}
-            className="flex flex-wrap justify-center gap-4 mb-12"
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="mb-12"
           >
-            {categories.map((category) => (
-              <button
-                key={category.key}
-                onClick={() => setFilter(category.key)}
-                className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center space-x-2 ${
-                  filter === category.key
-                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
-                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
-                }`}
-              >
-                <Filter className="w-4 h-4" />
-                <span>{category.label}</span>
-              </button>
-            ))}
+            <div className="flex flex-wrap justify-center gap-4">
+              {categories.map((category, index) => (
+                <motion.button
+                  key={category.key}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 + 0.3 }}
+                  onClick={() => setFilter(category.key)}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`group relative px-8 py-4 rounded-2xl font-bold transition-all duration-300 flex items-center space-x-3 ${
+                    filter === category.key
+                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-xl'
+                      : 'bg-white/80 dark:bg-gray-800/80 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 border border-gray-200/50 dark:border-gray-700/50 shadow-lg backdrop-blur-xl'
+                  }`}
+                >
+                  {filter === category.key && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur-xl opacity-30 -z-10"></div>
+                  )}
+                  <span className="text-lg">{category.label}</span>
+                  <div className={`px-3 py-1 rounded-full text-sm font-bold ${
+                    filter === category.key 
+                      ? 'bg-white/20 text-white' 
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                  }`}>
+                    {category.count}
+                  </div>
+                </motion.button>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Projects Grid */}
-      <section className="py-8 px-4">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-0 px-4">
+        <div className="max-w-5xl mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
               key={filter}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
             >
-              {filteredProjects.map((project, index) => (
-                <ProjectCard key={project.id} project={project} index={index} />
-              ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredProjects.map((project, index) => (
+                  <ProjectCard key={project.id} project={project} index={index} />
+                ))}
+              </div>
             </motion.div>
           </AnimatePresence>
 
-          {/* Empty State */}
           {filteredProjects.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-gray-500 dark:text-gray-400 text-lg">
-                No projects found in this category.
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center py-24"
+            >
+              <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-full mb-6">
+                <span className="text-4xl">🔍</span>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                No projects found
+              </h3>
+              <p className="text-lg text-gray-500 dark:text-gray-400 mb-6">
+                No projects found in this category. Try selecting a different filter.
               </p>
-            </div>
+              <button
+                onClick={() => setFilter('all')}
+                className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-bold hover:shadow-lg transition-shadow duration-300"
+              >
+                Show All Projects
+              </button>
+            </motion.div>
           )}
         </div>
       </section>
+
+      <div className="h-20"></div>
     </div>
   );
 };

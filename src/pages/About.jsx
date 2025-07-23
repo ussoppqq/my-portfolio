@@ -27,7 +27,28 @@ const About = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 relative overflow-hidden">
+      {/* Sophisticated Background Pattern (dari Home) */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-200/60 via-purple-200/40 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-bl from-purple-200/50 via-pink-200/30 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-tr from-cyan-200/40 via-blue-200/30 to-transparent rounded-full blur-3xl"></div>
+        </div>
+        <div className="absolute inset-0 opacity-5">
+          <div className="grid grid-cols-12 h-full">
+            {Array.from({ length: 12 }, (_, i) => (
+              <div key={i} className="border-r border-gray-400 dark:border-gray-600"></div>
+            ))}
+          </div>
+          <div className="absolute inset-0 grid grid-rows-8 w-full">
+            {Array.from({ length: 8 }, (_, i) => (
+              <div key={i} className="border-b border-gray-400 dark:border-gray-600"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Header Section */}
       <section className="py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
@@ -63,42 +84,21 @@ const About = () => {
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="relative"
+              className="relative flex flex-col items-center justify-center"
             >
-              <div className="relative w-full max-w-md mx-auto">
-                {/* Profile Image */}
-                <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 p-2">
-                  <div className="w-full h-full bg-white dark:bg-gray-900 rounded-2xl flex items-center justify-center">
-                    <div className="w-full h-full bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
-                      <span className="text-8xl font-bold text-white">US</span>
-                    </div>
-                  </div>
+              <div className="relative w-48 h-48 md:w-80 md:h-80 mx-auto">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 opacity-60 blur-lg animate-spin-slow"></div>
+                <div className="relative w-full h-full rounded-2xl shadow-2xl overflow-hidden border-4 border-white dark:border-gray-800 bg-white dark:bg-gray-900 flex items-center justify-center">
+                  <img
+                    src="/src/assets/Data-Master-(AUSG)-Muhammad _Yusuf_Firizki.png"
+                    alt="Foto Profil Yusuf Firizki"
+                    className="w-40 h-40 md:w-72 md:h-72 object-cover rounded-xl transition-transform duration-300 hover:scale-105"
+                  />
                 </div>
-
-                {/* Floating Cards */}
-                <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                  className="absolute -top-6 -right-6 bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700"
-                >
-                  <Code className="w-8 h-8 text-blue-600" />
-                </motion.div>
-
-                <motion.div
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-                  className="absolute -bottom-6 -left-6 bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700"
-                >
-                  <Heart className="w-8 h-8 text-red-500" />
-                </motion.div>
-
-                <motion.div
-                  animate={{ x: [0, 10, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, delay: 2 }}
-                  className="absolute top-1/2 -right-8 bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700"
-                >
-                  <Lightbulb className="w-8 h-8 text-yellow-500" />
-                </motion.div>
+              </div>
+              <div className="mt-4 text-center">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">{personalInfo.name}</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{personalInfo.title}</p>
               </div>
             </motion.div>
 
@@ -109,59 +109,14 @@ const About = () => {
               whileInView="visible"
               className="space-y-8"
             >
-              {/* Bio */}
               <motion.div variants={itemVariants}>
-                <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
+                <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white flex items-center mb-8">
                   <Users className="w-8 h-8 mr-3 text-blue-600" />
                   About Me
                 </h2>
-                <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
                   {personalInfo.bio[language]}
                 </p>
-              </motion.div>
-
-              {/* Why Technology */}
-              {/* <motion.div variants={itemVariants}>
-                <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white flex items-center">
-                  <Target className="w-6 h-6 mr-3 text-purple-600" />
-                  {t('about.why_tech')}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {t('about.tech_story')}
-                </p>
-              </motion.div> */}
-
-              {/* Quick Facts */}
-              <motion.div variants={itemVariants}>
-                <h3 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">
-                  Quick Facts
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {[
-                    { label: 'Location', value: personalInfo.location, icon: '📍' },
-                    { label: 'Instagram', value: "instagram.com/ussoppqq", icon: '📸' },
-                    { label: 'Email', value: personalInfo.email, icon: '📧' },
-                    { label: 'Phone', value: personalInfo.phone, icon: '📱' }
-                  ].map((fact, index) => (
-                    <motion.div
-                      key={index}
-                      whileHover={{ scale: 1.02, y: -2 }}
-                      className="p-4 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700"
-                    >
-                      <div className="flex items-center space-x-3">
-                        <span className="text-2xl">{fact.icon}</span>
-                        <div>
-                          <h4 className="font-semibold text-gray-900 dark:text-white">
-                            {fact.label}
-                          </h4>
-                          <p className="text-gray-600 dark:text-gray-400 text-sm">
-                            {fact.value}
-                          </p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
               </motion.div>
             </motion.div>
           </div>
@@ -169,7 +124,7 @@ const About = () => {
       </section>
 
       {/* Education Section */}
-      <section className="py-16 px-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900">
+      <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -216,6 +171,22 @@ const About = () => {
         </div>
       </section>
 
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-blob {
+          animation: float 6s ease-in-out infinite;
+        }
+        .animate-spin-slow {
+          animation: spin-slow 20s linear infinite;
+        }
+      `}</style>
     </div>
   );
 };

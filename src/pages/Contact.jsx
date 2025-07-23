@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, MessageSquare, Clock, Globe, Heart } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, MessageSquare, Clock, Globe, Heart, Instagram } from 'lucide-react';
 import { personalInfo } from '../data/personal';
 
 const Contact = () => {
-  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,6 +11,20 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const translations = {
+    'contact.title': 'Get In Touch',
+    'contact.subtitle': 'Have a project in mind? Let\'s work together to bring your ideas to life.',
+    'contact.info.email': 'Email Address',
+    'contact.info.phone': 'Phone Number',
+    'contact.info.location': 'Location',
+    'contact.form.name': 'Full Name',
+    'contact.form.email': 'Email Address',
+    'contact.form.subject': 'Subject',
+    'contact.form.message': 'Message',
+    'contact.form.send': 'Send Message'
+  };
+  const t = (key) => translations[key] || key;
+
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -21,8 +32,12 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      alert('Please fill in all fields');
+      return;
+    }
+    
     setIsSubmitting(true);
     
     // Simulate form submission
@@ -34,30 +49,46 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-900 relative overflow-hidden">
+      {/* Sophisticated Background Pattern */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-200/60 via-purple-200/40 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-bl from-purple-200/50 via-pink-200/30 to-transparent rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-tr from-cyan-200/40 via-blue-200/30 to-transparent rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        </div>
+        <div className="absolute inset-0 opacity-5">
+          <div className="grid grid-cols-12 h-full">
+            {Array.from({ length: 12 }, (_, i) => (
+              <div key={i} className="border-r border-gray-400 dark:border-gray-600"></div>
+            ))}
+          </div>
+          <div className="absolute inset-0 grid grid-rows-8 w-full">
+            {Array.from({ length: 8 }, (_, i) => (
+              <div key={i} className="border-b border-gray-400 dark:border-gray-600"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Header Section */}
       <section className="py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob"></div>
-          <div className="absolute top-40 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-2000"></div>
+          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-bounce" style={{animationDuration: '6s'}}></div>
+          <div className="absolute top-40 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-bounce" style={{animationDuration: '8s', animationDelay: '2s'}}></div>
         </div>
 
         <div className="max-w-4xl mx-auto text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-6xl font-bold gradient-text mb-6"
-          >
-            {t('contact.title')}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed"
-          >
-            {t('contact.subtitle')}
-          </motion.p>
+          <div className="opacity-0 translate-y-5 animate-fade-in">
+            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent mb-6">
+              {t('contact.title')}
+            </h1>
+          </div>
+          <div className="opacity-0 translate-y-5 animate-fade-in" style={{animationDelay: '0.2s'}}>
+            <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
+              {t('contact.subtitle')}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -66,23 +97,16 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Information */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-8"
-            >
+            <div className="opacity-0 -translate-x-12 animate-slide-in-left space-y-8">
               <div>
                 <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
                   Get in Touch
                 </h2>
                 <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
-                  I'm always interested in hearing about new opportunities and projects. 
-                  Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                  {personalInfo.about.en}
                 </p>
               </div>
 
-              {/* Contact Details */}
               <div className="space-y-6">
                 {[
                   {
@@ -90,97 +114,86 @@ const Contact = () => {
                     title: t('contact.info.email'),
                     value: personalInfo.email,
                     href: `mailto:${personalInfo.email}`,
-                    color: 'from-blue-600 to-cyan-600'
+                    color: 'from-blue-600 to-cyan-600',
+                    isLink: true
                   },
                   {
                     icon: Phone,
                     title: t('contact.info.phone'),
                     value: personalInfo.phone,
                     href: `tel:${personalInfo.phone}`,
-                    color: 'from-green-500 to-emerald-500'
+                    color: 'from-green-500 to-emerald-500',
+                    isLink: true
                   },
                   {
                     icon: MapPin,
                     title: t('contact.info.location'),
                     value: personalInfo.location,
-                    href: null,
-                    color: 'from-purple-500 to-pink-500'
+                    href: personalInfo.location ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(personalInfo.location)}` : null,
+                    color: 'from-purple-500 to-pink-500',
+                    isLink: !!personalInfo.location
                   },
-                  {
-                    icon: Clock,
-                    title: 'Response Time',
-                    value: 'Within 24 hours',
-                    href: null,
-                    color: 'from-orange-500 to-red-500'
-                  }
                 ].map((contact, index) => (
-                  <motion.div
+                  <div
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.02, x: 5 }}
-                    className="flex items-center space-x-4 p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700"
+                    className="opacity-0 translate-y-5 animate-fade-in-up group"
+                    style={{animationDelay: `${index * 0.1}s`}}
                   >
-                    <div className={`w-14 h-14 bg-gradient-to-r ${contact.color} rounded-2xl flex items-center justify-center shadow-lg`}>
-                      <contact.icon className="w-7 h-7 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="font-semibold text-gray-900 dark:text-white mb-1">
-                        {contact.title}
-                      </p>
-                      {contact.href ? (
-                        <a
-                          href={contact.href}
-                          className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-                        >
-                          {contact.value}
-                        </a>
-                      ) : (
-                        <p className="text-gray-600 dark:text-gray-400">
-                          {contact.value}
+                    <a
+                      href={contact.href || undefined}
+                      target={contact.isLink ? '_blank' : undefined}
+                      rel={contact.isLink ? 'noopener noreferrer' : undefined}
+                      className="flex items-center space-x-4 p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:scale-105 hover:translate-x-2 hover:shadow-2xl group cursor-pointer"
+                      style={{ textDecoration: 'none' }}
+                      tabIndex={contact.isLink ? 0 : -1}
+                    >
+                      <div className={`w-14 h-14 bg-gradient-to-r ${contact.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                        <contact.icon className="w-7 h-7 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="font-semibold text-gray-900 dark:text-white mb-1">
+                          {contact.title}
                         </p>
-                      )}
-                    </div>
-                  </motion.div>
+                        {contact.isLink && contact.href ? (
+                          <span className="text-blue-600 dark:text-blue-400 hover:underline font-medium transition-colors duration-300">
+                            {contact.value}
+                          </span>
+                        ) : (
+                          <span className="text-gray-600 dark:text-gray-400">
+                            {contact.value}
+                          </span>
+                        )}
+                      </div>
+                    </a>
+                  </div>
                 ))}
               </div>
 
-              {/* Social Links */}
-              <div>
-                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center">
-                  <Globe className="w-6 h-6 mr-2 text-blue-600" />
-                  Follow Me
-                </h3>
+              <div className="opacity-0 translate-y-5 animate-fade-in-up" style={{animationDelay: '0.4s'}}>
                 <div className="flex space-x-4">
                   {[
                     { icon: Github, url: personalInfo.social.github, color: 'hover:bg-gray-800', name: 'GitHub' },
                     { icon: Linkedin, url: personalInfo.social.linkedin, color: 'hover:bg-blue-600', name: 'LinkedIn' },
-                    { icon: MessageSquare, url: personalInfo.social.whatsapp, color: 'hover:bg-green-500', name: 'WhatsApp' }
+                    { icon: MessageSquare, url: personalInfo.social.whatsapp, color: 'hover:bg-green-500', name: 'WhatsApp' },
+                    { icon: Instagram, url: personalInfo.social.instagram, color: 'hover:bg-pink-500', name: 'Instagram' }
                   ].map(({ icon: Icon, url, color, name }, index) => (
-                    <motion.a
+                    <a
                       key={index}
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1, y: -5 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`group p-4 bg-gray-100 dark:bg-gray-800 rounded-2xl ${color} text-white transition-all duration-300 shadow-lg hover:shadow-xl`}
+                      className={`group p-4 bg-gray-100 dark:bg-gray-800 rounded-2xl text-gray-700 dark:text-white transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110 hover:-translate-y-2 ${color}`}
                       title={name}
                     >
                       <Icon className="w-6 h-6" />
-                    </motion.a>
+                    </a>
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
+            <div className="opacity-0 translate-x-12 animate-slide-in-right">
               <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center mb-8">
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mr-4">
@@ -191,7 +204,7 @@ const Contact = () => {
                   </h3>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label
@@ -207,7 +220,7 @@ const Contact = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-300 placeholder-gray-500"
+                        className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-300 placeholder-gray-500 focus:scale-105"
                         placeholder="Your full name"
                       />
                     </div>
@@ -226,7 +239,7 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-300 placeholder-gray-500"
+                        className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-300 placeholder-gray-500 focus:scale-105"
                         placeholder="your.email@example.com"
                       />
                     </div>
@@ -246,7 +259,7 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-300 placeholder-gray-500"
+                      className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-300 placeholder-gray-500 focus:scale-105"
                       placeholder="What's this about?"
                     />
                   </div>
@@ -265,17 +278,16 @@ const Contact = () => {
                       onChange={handleInputChange}
                       required
                       rows={6}
-                      className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-300 resize-none placeholder-gray-500"
+                      className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-300 resize-none placeholder-gray-500 focus:scale-105"
                       placeholder="Tell me about your project or just say hello!"
                     />
                   </div>
 
-                  <motion.button
-                    type="submit"
+                  <button
+                    type="button"
+                    onClick={handleSubmit}
                     disabled={isSubmitting}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-xl hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none font-semibold text-lg"
+                    className="w-full inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-xl hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none font-semibold text-lg hover:scale-105 active:scale-95"
                   >
                     {isSubmitting ? (
                       <>
@@ -288,21 +300,75 @@ const Contact = () => {
                         {t('contact.form.send')}
                       </>
                     )}
-                  </motion.button>
-                </form>
-
-                {/* Additional Info */}
-                <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-700 dark:to-gray-600 rounded-xl">
-                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
-                    <Heart className="w-4 h-4 text-red-500 mr-2" />
-                    <span>I typically respond within 24 hours</span>
-                  </div>
+                  </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
+
+      <style jsx>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slide-in-left {
+          from {
+            opacity: 0;
+            transform: translateX(-50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes slide-in-right {
+          from {
+            opacity: 0;
+            transform: translateX(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        .animate-fade-in {
+          animation: fade-in 0.6s ease-out forwards;
+        }
+
+        .animate-fade-in-up {
+          animation: fade-in-up 0.6s ease-out forwards;
+        }
+
+        .animate-slide-in-left {
+          animation: slide-in-left 0.6s ease-out forwards;
+        }
+
+        .animate-slide-in-right {
+          animation: slide-in-right 0.6s ease-out forwards;
+        }
+      `}</style>
     </div>
   );
 };
