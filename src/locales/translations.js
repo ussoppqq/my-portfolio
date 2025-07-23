@@ -55,6 +55,7 @@ export const translations = {
     contact: {
       title: 'Hubungi Saya',
       subtitle: 'Mari diskusi tentang proyek impian Anda',
+      desc:'Saya selalu tertarik mendengar tentang peluang dan proyek baru. Baik Anda punya pertanyaan atau hanya ingin menyapa, saya akan berusaha sebaik mungkin untuk membalasnya!',
       form: {
         name: 'Nama Lengkap',
         email: 'Alamat Email',
@@ -132,6 +133,7 @@ export const translations = {
     contact: {
       title: 'Contact Me',
       subtitle: 'Let\'s discuss your dream project',
+      desc:`I'm always interested in hearing about new opportunities and projects. Whether you have a question or just want to say hi, I'll try my best to get back to you!`,
       form: {
         name: 'Full Name',
         email: 'Email Address',

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, MessageSquare, Clock, Globe, Heart, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, MessageSquare, Instagram } from 'lucide-react';
 import { personalInfo } from '../data/personal';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Contact = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -11,19 +13,13 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const translations = {
-    'contact.title': 'Get In Touch',
-    'contact.subtitle': 'Have a project in mind? Let\'s work together to bring your ideas to life.',
-    'contact.info.email': 'Email Address',
-    'contact.info.phone': 'Phone Number',
-    'contact.info.location': 'Location',
-    'contact.form.name': 'Full Name',
-    'contact.form.email': 'Email Address',
-    'contact.form.subject': 'Subject',
-    'contact.form.message': 'Message',
-    'contact.form.send': 'Send Message'
-  };
-  const t = (key) => translations[key] || key;
+  console.log('Contact translations:', {
+    title: t('contact.title'),
+    subtitle: t('contact.subtitle'),
+    form_name: t('contact.form.name'),
+    form_send: t('contact.form.send'),
+    info_email: t('contact.info.email')
+  }); // Debug translations
 
   const handleInputChange = (e) => {
     setFormData({
@@ -34,7 +30,7 @@ const Contact = () => {
 
   const handleSubmit = async () => {
     if (!formData.name || !formData.email || !formData.subject || !formData.message) {
-      alert('Please fill in all fields');
+      alert(t('contact.form.fill_fields'));
       return;
     }
     
@@ -42,7 +38,7 @@ const Contact = () => {
     
     // Simulate form submission
     setTimeout(() => {
-      alert('Thank you for your message! I will get back to you soon.');
+      alert(t('contact.form.success_message'));
       setFormData({ name: '', email: '', subject: '', message: '' });
       setIsSubmitting(false);
     }, 2000);
@@ -100,10 +96,10 @@ const Contact = () => {
             <div className="opacity-0 -translate-x-12 animate-slide-in-left space-y-8">
               <div>
                 <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
-                  Get in Touch
+                  {t('contact.title')}
                 </h2>
                 <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
-                  {personalInfo.about.en}
+                  {t('contact.desc')}
                 </p>
               </div>
 
@@ -200,7 +196,7 @@ const Contact = () => {
                     <Send className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
-                    Send Message
+                    {t('contact.form.send')}
                   </h3>
                 </div>
 
@@ -221,7 +217,7 @@ const Contact = () => {
                         onChange={handleInputChange}
                         required
                         className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-300 placeholder-gray-500 focus:scale-105"
-                        placeholder="Your full name"
+                        placeholder={t('contact.form.name')}
                       />
                     </div>
 
@@ -240,7 +236,7 @@ const Contact = () => {
                         onChange={handleInputChange}
                         required
                         className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-300 placeholder-gray-500 focus:scale-105"
-                        placeholder="your.email@example.com"
+                        placeholder={t('contact.form.email')}
                       />
                     </div>
                   </div>
@@ -260,7 +256,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-300 placeholder-gray-500 focus:scale-105"
-                      placeholder="What's this about?"
+                      placeholder={t('contact.form.subject')}
                     />
                   </div>
 
@@ -279,7 +275,7 @@ const Contact = () => {
                       required
                       rows={6}
                       className="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-300 resize-none placeholder-gray-500 focus:scale-105"
-                      placeholder="Tell me about your project or just say hello!"
+                      placeholder={t('contact.form.message')}
                     />
                   </div>
 
@@ -292,7 +288,7 @@ const Contact = () => {
                     {isSubmitting ? (
                       <>
                         <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white mr-3" />
-                        Sending...
+                        {t('contact.form.sending')}
                       </>
                     ) : (
                       <>
