@@ -99,7 +99,7 @@ const Footer = () => {
     : 'text-gray-400';
 
   return (
-    <footer className={`${footerBg} py-10 relative overflow-hidden`}>
+    <footer className={`${footerBg} py-10 relative overflow-hidden px-10 py-8`}>
       <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
         <motion.div
           className="flex items-center mb-2 md:mb-0 md:mr-4"

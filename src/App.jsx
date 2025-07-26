@@ -5,7 +5,7 @@ import { LanguageProvider } from './contexts/LanguageContext';
 import LoadingScreen from './components/LoadingScreen';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-import Main from './components/Main'; // Pastikan path ini benar
+import Main from './components/Main'; 
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
