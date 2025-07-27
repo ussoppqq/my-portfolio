@@ -112,6 +112,8 @@ html {
   margin: 0;
   padding: 0;
   text-align: center;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .logo {
@@ -148,4 +150,53 @@ html {
 
 .read-the-docs {
   color: #888;
+}
+
+/* Gaya untuk scroll bar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background); /* Sesuaikan dengan background tema */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary); /* Sesuaikan dengan warna primer tema, misalnya ungu */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-foreground); /* Warna saat dihover, sesuaikan dengan foreground primer */
+}
+
+/* Gaya untuk dark mode */
+.dark ::-webkit-scrollbar-track {
+  background: var(--background); /* Background gelap */
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--primary); /* Warna primer di dark mode */
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-foreground); /* Warna hover di dark mode */
+}
+
+scrollbar-width: thin;
+scrollbar-color: var(--primary) var(--background);
+
+html {
+  scroll-behavior: smooth;
+  overflow-y: auto !important; /* Pastikan scroll diaktifkan */
+}
+
+#root {
+  width: 100vw;
+  height: auto; /* Ganti height: 100vh jika ada */
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  max-width: 100%;
+  overflow-x: hidden;
 }

@@ -10,11 +10,11 @@ const Home = () => {
       {/* Sophisticated Background Pattern */}
       <div className="absolute inset-0">
         {/* Primary gradient mesh */}
-        <div className="absolute inset-0 opacity-40">
+        {/* <div className="absolute inset-0 opacity-40">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-200/60 via-purple-200/40 to-transparent rounded-full blur-3xl"></div>
           <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-bl from-purple-200/50 via-pink-200/30 to-transparent rounded-full blur-3xl"></div>
           <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-tr from-cyan-200/40 via-blue-200/30 to-transparent rounded-full blur-3xl"></div>
-        </div>
+        </div> */}
         
         {/* Geometric grid overlay */}
         <div className="absolute inset-0 opacity-5">
