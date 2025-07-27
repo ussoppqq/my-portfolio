@@ -105,7 +105,6 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-/* Gaya tambahan dari Vite React default */
 #root {
   width: 100vw;
   height: 100vh;
@@ -152,35 +151,33 @@ html {
   color: #888;
 }
 
-/* Gaya untuk scroll bar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background); /* Sesuaikan dengan background tema */
+  background: var(--background); 
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary); /* Sesuaikan dengan warna primer tema, misalnya ungu */
+  background: var(--primary); 
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-foreground); /* Warna saat dihover, sesuaikan dengan foreground primer */
+  background: var(--primary-foreground); 
 }
 
-/* Gaya untuk dark mode */
 .dark ::-webkit-scrollbar-track {
-  background: var(--background); /* Background gelap */
+  background: var(--background); 
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: var(--primary); /* Warna primer di dark mode */
+  background: var(--primary); 
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-foreground); /* Warna hover di dark mode */
+  background: var(--primary-foreground); 
 }
 
 scrollbar-width: thin;
@@ -188,12 +185,12 @@ scrollbar-color: var(--primary) var(--background);
 
 html {
   scroll-behavior: smooth;
-  overflow-y: auto !important; /* Pastikan scroll diaktifkan */
+  overflow-y: auto !important; 
 }
 
 #root {
   width: 100vw;
-  height: auto; /* Ganti height: 100vh jika ada */
+  height: auto; 
   margin: 0;
   padding: 0;
   text-align: center;

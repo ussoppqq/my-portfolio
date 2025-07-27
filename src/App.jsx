@@ -17,7 +17,7 @@ function App() {
   return (
     <LanguageProvider>
       <ThemeProvider>
-        <AnimatePresence mode="wait" onExitComplete={() => window.dispatchEvent(new Event('resize'))}>
+        <AnimatePresence mode="wait">
           {isLoading ? (
             <LoadingScreen key="loading" onLoadingComplete={handleLoadingComplete} />
           ) : (
