@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Github, Linkedin, MessageSquare, Instagram } from 'lucide-react';
 import { personalInfo } from '../data/personal';
 import { useLanguage } from '../contexts/LanguageContext';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -33,26 +34,34 @@ const Contact = () => {
       alert(t('contact.form.fill_fields'));
       return;
     }
-    
+
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+
+    try {
+      await emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message
+        }
+      );
       alert(t('contact.form.success_message'));
       setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      alert(t('contact.form.error_message') || 'Failed to send message. Please try again later.');
+    } finally {
       setIsSubmitting(false);
-    }, 2000);
+    }
   };
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-gray-900 relative overflow-hidden">
       {/* Sophisticated Background Pattern */}
       <div className="absolute inset-0">
-        {/* <div className="absolute inset-0 opacity-40">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-200/60 via-purple-200/40 to-transparent rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-bl from-purple-200/50 via-pink-200/30 to-transparent rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-          <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-tr from-cyan-200/40 via-blue-200/30 to-transparent rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
-        </div> */}
         <div className="absolute inset-0 opacity-5">
           <div className="grid grid-cols-12 h-full">
             {Array.from({ length: 12 }, (_, i) => (
