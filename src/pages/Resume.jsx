@@ -78,14 +78,14 @@ export const getSkillsByCategory = (category) => {
 const Resume = () => {
     const { t } = useLanguage();
 
-    const handleDownloadCV = () => {
-        const link = document.createElement('a');
-        link.href = '/Muhamad Yusuf Firizki-cv(1).pdf'; 
-        link.download = '/Muhamad Yusuf Firizki-cv(1).pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
+    // const handleDownloadCV = () => {
+    //     const link = document.createElement('a');
+    //     link.href = '/Muhamad Yusuf Firizki-cv(1).pdf'; 
+    //     link.download = '/Muhamad Yusuf Firizki-cv(1).pdf';
+    //     document.body.appendChild(link);
+    //     link.click();
+    //     document.body.removeChild(link);
+    // };
 
     const handleCertificationClick = (url) => {
         window.open(url, '_blank');
@@ -117,7 +117,7 @@ const Resume = () => {
                         {t('resume.subtitle')}
                     </motion.p>
 
-                    <motion.button
+                    {/* <motion.button
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4 }}
@@ -126,7 +126,7 @@ const Resume = () => {
                     >
                         <Download className="w-5 h-5 mr-2" />
                         {t('resume.download')}
-                    </motion.button>
+                    </motion.button> */}
                 </div>
             </section>
 

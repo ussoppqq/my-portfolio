@@ -1,9 +1,20 @@
 import React from 'react';
-import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Mail, Download } from 'lucide-react';
 import { personalInfo } from '../data/personal';
+import { motion } from 'framer-motion';
 
 const Home = () => {
   const language = 'id';
+
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/Muhamad Yusuf Firizki-cv(1).pdf'; 
+    link.download = 'Muhamad Yusuf Firizki-cv.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-gray-900 relative overflow-hidden">
@@ -15,7 +26,7 @@ const Home = () => {
           <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-bl from-purple-200/50 via-pink-200/30 to-transparent rounded-full blur-3xl"></div>
           <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-tr from-cyan-200/40 via-blue-200/30 to-transparent rounded-full blur-3xl"></div>
         </div> */}
-        
+
         {/* Geometric grid overlay */}
         <div className="absolute inset-0 opacity-5">
           <div className="grid grid-cols-12 h-full">
@@ -45,7 +56,7 @@ const Home = () => {
           <div className="w-full h-full rounded-full border-4 border-dashed border-blue-400 animate-spin-slow"></div>
           <div className="absolute inset-4 rounded-full border-2 border-dashed border-purple-400 animate-spin-reverse-slow"></div>
         </div>
-        
+
         <div className="absolute bottom-20 left-16 w-24 h-24 opacity-15">
           <div className="w-full h-full rounded-full border-2 border-dotted border-pink-400 animate-pulse"></div>
         </div>
@@ -58,12 +69,12 @@ const Home = () => {
         {/* Enhanced Background Elements */}
         <div className="absolute inset-0 -z-10">
           {/* Animated gradient orbs */}
-          <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-r from-blue-400/20 via-purple-400/15 to-pink-400/10 rounded-full blur-2xl opacity-80 animate-pulse" 
-               style={{ animation: 'float 8s ease-in-out infinite' }}></div>
+          <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-r from-blue-400/20 via-purple-400/15 to-pink-400/10 rounded-full blur-2xl opacity-80 animate-pulse"
+            style={{ animation: 'float 8s ease-in-out infinite' }}></div>
           <div className="absolute top-60 right-10 w-48 h-48 bg-gradient-to-r from-cyan-400/15 via-blue-400/20 to-indigo-400/15 rounded-full blur-2xl opacity-60"
-               style={{ animation: 'float 10s ease-in-out infinite reverse' }}></div>
+            style={{ animation: 'float 10s ease-in-out infinite reverse' }}></div>
           <div className="absolute bottom-20 left-1/4 w-56 h-56 bg-gradient-to-r from-purple-400/15 via-pink-400/10 to-rose-400/15 rounded-full blur-2xl opacity-50"
-               style={{ animation: 'float 9s ease-in-out infinite' }}></div>
+            style={{ animation: 'float 9s ease-in-out infinite' }}></div>
         </div>
 
         <div className="max-w-7xl mx-auto">
@@ -115,8 +126,8 @@ const Home = () => {
               {/* Enhanced Action Buttons */}
               {/* <div className="flex flex-col sm:flex-row gap-6 pt-4">
                 <button className="group relative inline-flex items-center px-10 py-5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-3xl font-semibold text-lg shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 overflow-hidden"> */}
-                  {/* Button shine effect */}
-                  {/* <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              {/* Button shine effect */}
+              {/* <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                   <span className="relative font-bold">Lihat Portofolio</span>
                   <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform duration-300" />
                 </button>
@@ -129,7 +140,7 @@ const Home = () => {
 
               {/* Enhanced Social Links */}
               <div className="flex space-x-6 pt-8">
-                {[ 
+                {[
                   { icon: Github, url: personalInfo.social.github, color: 'hover:bg-gray-800 hover:shadow-gray-500/30', label: 'GitHub' },
                   { icon: Linkedin, url: personalInfo.social.linkedin, color: 'hover:bg-blue-600 hover:shadow-blue-500/30', label: 'LinkedIn' },
                   { icon: Mail, url: `mailto:${personalInfo.email}`, color: 'hover:bg-red-500 hover:shadow-red-500/30', label: 'Email' },
@@ -148,6 +159,19 @@ const Home = () => {
                     </div>
                   </a>
                 ))}
+
+                {/* Button Download CV */}
+                <motion.button
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  onClick={handleDownloadCV}
+                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-xl hover:shadow-2xl font-medium"
+                >
+                  <Download className="w-5 h-5 mr-2" />
+                  Download CV
+                </motion.button>
+
               </div>
             </div>
 
