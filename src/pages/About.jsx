@@ -114,7 +114,7 @@ const About = () => {
                   <Users className="w-8 h-8 mr-3 text-blue-600" />
                   About Me
                 </h2>
-                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6 text-justify">
                   {personalInfo.bio[language]}
                 </p>
               </motion.div>
