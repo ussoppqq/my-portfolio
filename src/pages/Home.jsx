@@ -15,10 +15,9 @@ const Home = () => {
     document.body.removeChild(link);
   };
 
-
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-gray-900 relative overflow-hidden">
-      {/* Sophisticated Background Pattern */}
+      {/* === Sophisticated Background Pattern === */}
       <div className="absolute inset-0">
         {/* Primary gradient mesh */}
         {/* <div className="absolute inset-0 opacity-40">
@@ -64,7 +63,8 @@ const Home = () => {
         {/* Noise texture overlay */}
         <div className="absolute inset-0 bg-noise opacity-5 mix-blend-soft-light"></div>
       </div>
-      {/* Hero Section */}
+
+      {/* === Hero Section === */}
       <section className="relative py-24 px-4 overflow-hidden">
         {/* Enhanced Background Elements */}
         <div className="absolute inset-0 -z-10">
@@ -79,7 +79,7 @@ const Home = () => {
 
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            {/* Left Content - Enhanced */}
+            {/* === Left Content === */}
             <div className="space-y-10 transform hover:scale-[1.02] transition-all duration-700">
               {/* Greeting */}
               <div className="relative">
@@ -89,14 +89,13 @@ const Home = () => {
                 <div className="absolute -bottom-1 left-0 w-20 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
               </div>
 
-              {/* Name with enhanced styling */}
+              {/* Name with shadow effect */}
               <div className="relative">
                 <h1 className="text-4xl lg:text-6xl font-bold leading-tight tracking-tight">
                   <span className="bg-gradient-to-r from-gray-900 via-blue-800 to-purple-900 dark:from-white dark:via-blue-200 dark:to-purple-200 bg-clip-text text-transparent drop-shadow-sm">
                     {personalInfo.name}
                   </span>
                 </h1>
-                {/* Subtle text shadow effect */}
                 <div className="absolute inset-0 text-4xl lg:text-6xl font-bold leading-tight tracking-tight opacity-10 blur-sm">
                   <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                     {personalInfo.name}
@@ -104,7 +103,7 @@ const Home = () => {
                 </div>
               </div>
 
-              {/* Title with decorative line */}
+              {/* Title */}
               <div className="space-y-6">
                 <h2 className="text-2xl lg:text-3xl font-semibold">
                   <span className="bg-gradient-to-r from-blue-700 via-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -118,27 +117,7 @@ const Home = () => {
                 </div>
               </div>
 
-              {/* Enhanced Description */}
-              {/* <p className="text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl">
-                {personalInfo.about[language] || personalInfo.about.id}
-              </p> */}
-
-              {/* Enhanced Action Buttons */}
-              {/* <div className="flex flex-col sm:flex-row gap-6 pt-4">
-                <button className="group relative inline-flex items-center px-10 py-5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-3xl font-semibold text-lg shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 overflow-hidden"> */}
-              {/* Button shine effect */}
-              {/* <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                  <span className="relative font-bold">Lihat Portofolio</span>
-                  <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform duration-300" />
-                </button>
-
-                <button className="group inline-flex items-center px-10 py-5 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-3xl font-semibold text-lg border-2 border-gray-200 dark:border-gray-600 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 backdrop-blur-sm">
-                  <span className="font-bold">Hubungi Saya</span>
-                  <Mail className="w-6 h-6 ml-3 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300" />
-                </button>
-              </div> */}
-
-              {/* Enhanced Social Links */}
+              {/* === Social Links + Download CV Button === */}
               <div className="flex space-x-6 pt-8">
                 {[
                   { icon: Github, url: personalInfo.social.github, color: 'hover:bg-gray-800 hover:shadow-gray-500/30', label: 'GitHub' },
@@ -160,22 +139,26 @@ const Home = () => {
                   </a>
                 ))}
 
-                {/* Button Download CV */}
+                {/* Download CV Button → responsive */}
                 <motion.button
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
                   onClick={handleDownloadCV}
-                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-xl hover:shadow-2xl font-medium"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-xl hover:shadow-2xl font-medium"
                 >
-                  <Download className="w-5 h-5 mr-2" />
-                  Download CV
+                  {/* Mobile: hanya icon */}
+                  <Download className="w-6 h-6 block md:hidden" />
+                  {/* Desktop: icon + text */}
+                  <span className="hidden md:inline-flex items-center">
+                    <Download className="w-5 h-5 mr-2" />
+                    Download CV
+                  </span>
                 </motion.button>
-
               </div>
             </div>
 
-            {/* Right Content - Enhanced Profile */}
+            {/* === Right Content: Profile === */}
             <div className="relative flex justify-center">
               <div className="relative w-[420px] h-[420px] group">
                 {/* Outer rotating ring */}
@@ -192,26 +175,21 @@ const Home = () => {
                 {/* Profile image container */}
                 <div className="absolute inset-4 rounded-full overflow-hidden shadow-2xl bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 group-hover:scale-105 transition-transform duration-700">
                   <div className="w-full h-full flex items-center justify-center relative overflow-hidden">
-                    {/* Profile image */}
                     <img
                       src="/Data-Master-(AUSG)-Muhammad_Yusuf_Firizki-Copy.png"
                       alt="Foto Profil Yusuf Firizki"
                       className="w-full h-full object-cover rounded-full border-4 border-white dark:border-gray-900"
                     />
-                    {/* Image overlay effects */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/10"></div>
                   </div>
                 </div>
-
-                {/* Pulsing glow effect */}
-                {/* <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-xl animate-pulse"></div> */}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Custom CSS for animations */}
+      {/* === Custom CSS for animations === */}
       <style jsx>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -241,8 +219,7 @@ const Home = () => {
         }
         
         .bg-noise {
-          background-image: 
-            radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0);
+          background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0);
           background-size: 20px 20px;
         }
       `}</style>
