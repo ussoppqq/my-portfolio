@@ -8,7 +8,7 @@ const Home = () => {
 
   const handleDownloadCV = () => {
     const link = document.createElement('a');
-    link.href = '/Muhamad Yusuf Firizki-cv(1).pdf'; 
+    link.href = '/CV-Muhamad Yusuf Firizki.pdf'; 
     link.download = 'Muhamad Yusuf Firizki-cv.pdf';
     document.body.appendChild(link);
     link.click();
