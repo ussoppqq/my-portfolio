@@ -93,7 +93,7 @@ const About = () => {
                 {/* Foto Profil */}
                 <div className="relative w-full h-full rounded-2xl shadow-2xl overflow-hidden border-4 border-white dark:border-gray-800 bg-white dark:bg-gray-900 flex items-center justify-center">
                   <img
-                    src="/Muhamad_Yusuf_Firizki.jpg"
+                    src="/Muhamad_Yusuf_Firizki.png"
                     alt="Foto Profil Yusuf Firizki"
                     className="w-56 h-56 sm:w-56 sm:h-56 md:w-72 md:h-72 object-cover rounded-xl transition-transform duration-300 hover:scale-105"
                   />
