@@ -1,7 +1,7 @@
 export const personalInfo = {
   name: "Muhamad Yusuf Firizki",
   title: "Full Stack Developer Specializing in AI",
-  email: "rizkimuh252@gmail.com",
+  email: "muhamadyusuffirizki@gmail.com",
   phone: "+62 895-3342-19066",
   location: "Bekasi, Indonesia",
   bio: {
